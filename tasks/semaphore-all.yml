@@ -1,0 +1,59 @@
+- name: Docker - Create Workspace Playbook directory
+  ansible.builtin.file:
+    path: /opt/workspace/playbook
+    state: directory
+    owner: docker
+    group: docker
+    force: no
+
+- name: Docker - Create deploy docker-compose  directory
+  ansible.builtin.file:
+    path: /opt/deploy
+    state: directory
+    owner: docker
+    group: docker
+    force: no
+
+- name: Docker - Pull image mysql
+  ansible.builtin.docker_image:
+    name: mysql:8.0
+    source: pull
+    state: present
+  when: semaphore_type_database == 'mysql'
+
+- name: Docker - Pull image postgresql
+  ansible.builtin.docker_image:
+    name: postgres:14
+    source: pull
+    state: present
+  when: semaphore_type_database == 'mysql'
+
+- name: Docker - Pull image Shemaphore
+  docker_image:
+    name: semaphoreui/semaphore:latest
+    source: pull
+    state: present
+
+- name: "Docker - Copy Docker-compose for Mysql"
+  ansible.builtin.template:
+    src: docker-compose-mysql.j2
+    dest: /opt/deploy/docker-compose.yml
+    mode: 0440
+    owner: docker
+    group: docker
+  when: semaphore_type_database == 'mysql'
+
+- name: "Docker - Copy Docker-compose for Postgresql"
+  ansible.builtin.template:
+    src: docker-compose-postgresql.j2
+    dest: /opt/deploy/docker-compose.yml
+    mode: 0440
+    owner: docker
+    group: docker
+  when: semaphore_type_database == 'postgresql'
+
+- name: Docker - Deploy Docker Compose
+  ansible.builtin.command: 
+    cmd: sudo docker-compose up -d
+    chdir: /opt/deploy
+
