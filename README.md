@@ -6,7 +6,7 @@ Author : Alexander Aguilar
 email  : alexolomeo@gmail.com
 
 ## host file
-
+```yml
 [semaphoreui]
 localhost
 
@@ -16,7 +16,7 @@ ansible_user=ubuntu
 #ansible_become_method=sudo
 ansible_port= 2244
 ansible_ssh_private_key_file= ./KEY-UBUNTU
-
+```
 
 ## Example Playbook
 
