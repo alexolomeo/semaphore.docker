@@ -1,10 +1,10 @@
 # Ansible Role: semaphore.docker
 
 A full list of defaults and their values can be found in the `defaults/main.yml`.
-``
+```
 @author : Alexander Aguilar
 @email  : alexolomeo@gmail.com
-``
+```
 ## hosts file
 ```yml
 [semaphoreui]
