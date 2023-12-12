@@ -42,4 +42,7 @@ ansible_ssh_private_key_file= ./KEY-UBUNTU
     - semaphore.docker
 
 ```
-
+## execute 
+```yml
+ansible-playbook -i hosts semaphore.yml
+```
