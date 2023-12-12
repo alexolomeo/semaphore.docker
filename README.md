@@ -18,7 +18,7 @@ ansible_port= 2244
 ansible_ssh_private_key_file= ./KEY-UBUNTU
 ```
 
-## Example Playbook
+## Example Playbook semaphore.yml
 
 
 ```yml
