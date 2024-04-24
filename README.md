@@ -12,7 +12,6 @@ localhost
 
 [semaphoreui:vars]
 ansible_user=ubuntu
-#ansible_become=yes
 #ansible_port= 2244
 ansible_ssh_private_key_file= ./KEY-SERVER
 ```
